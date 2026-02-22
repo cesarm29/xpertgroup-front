@@ -1,0 +1,22 @@
+<app-nav></app-nav>
+<div class="min-h-screen bg-gray-50 py-10">
+  <div class="container">
+    <h1 class="text-3xl font-bold mb-6">Bienvenido <span class="text-indigo-600">{{ userEmail() || '' }}</span></h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <a routerLink="/breeds" class="bg-white rounded-xl shadow p-6 flex items-center gap-4 hover:shadow-lg transition">
+        <div class="h-12 w-12 flex items-center justify-center rounded-full bg-indigo-50 text-indigo-600 text-2xl">🐱</div>
+        <div class="flex-1">
+          <div class="font-semibold text-gray-800">Razas</div>
+          <div class="text-sm text-gray-500">Explora distintas razas</div>
+        </div>
+      </a>
+      <a routerLink="/table" class="bg-white rounded-xl shadow p-6 flex items-center gap-4 hover:shadow-lg transition">
+        <div class="h-12 w-12 flex items-center justify-center rounded-full bg-indigo-50 text-indigo-600 text-2xl">🐾</div>
+        <div class="flex-1">
+          <div class="font-semibold text-gray-800">Tabla de razas</div>
+          <div class="text-sm text-gray-500">Lista completa y paginada</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

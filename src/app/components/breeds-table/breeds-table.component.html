@@ -1,0 +1,50 @@
+<app-nav></app-nav>
+<div class="p-4 container mx-auto max-w-5xl">
+  <h2 class="text-2xl font-bold mb-4">Tabla de razas</h2>
+
+  <div class="flex gap-2 mb-4">
+    <input [(ngModel)]="filter" placeholder="Buscar..." class="flex-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+    <button (click)="applyFilter()" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Buscar</button>
+  </div>
+
+  <div class="overflow-x-auto bg-white rounded-lg shadow p-4">
+    <div *ngIf="loading()" class="flex items-center justify-center py-8">
+      <svg class="w-10 h-10 animate-spin text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+      </svg>
+    </div>
+    <table *ngIf="!loading()" class="min-w-full divide-y">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Origen</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Temperamento</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vida</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y">
+        <tr *ngFor="let b of paged" class="hover:bg-gray-50">
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ b.name }}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ b.origin }}</td>
+          <td class="px-6 py-4 text-sm text-gray-500">{{ b.temperament }}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ b.life_span }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-4 flex items-center justify-between">
+    <div *ngIf="displayed.length === 0 && !loading()" class="text-sm text-gray-500">No se encontraron resultados.</div>
+    <div *ngIf="displayed.length > 0 && !loading()" class="flex items-center gap-4">
+      <div class="text-sm text-gray-600">Mostrando <span class="font-medium">{{ (page-1)*pageSize + 1 }}</span> - <span class="font-medium">{{ Math.min(page*pageSize, displayed.length) }}</span> de <span class="font-medium">{{ displayed.length }}</span></div>
+      <div class="flex items-center gap-2">
+        <button (click)="prevPage()" [disabled]="page===1" class="px-3 py-1 bg-gray-100 rounded disabled:opacity-50">Prev</button>
+        <div class="px-2">Página <span class="font-medium">{{ page }}</span> / <span class="font-medium">{{ totalPages() }}</span></div>
+        <button (click)="nextPage()" [disabled]="page===totalPages()" class="px-3 py-1 bg-gray-100 rounded disabled:opacity-50">Next</button>
+      </div>
+      <select [ngModel]="pageSize" (ngModelChange)="setPageSize($any($event))" class="border px-2 py-1 rounded">
+        <option *ngFor="let s of pageSizes" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+  </div>
+</div>

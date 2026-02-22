@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+	--brand: #7c3aed;
+	--muted: #6b7280;
+}
+
+html,body{height:100%;}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;margin:0;background:linear-gradient(180deg,#fafafa,#fff);}
+
+.container{max-width:1100px;margin-inline:auto;padding:1rem}
+
+/* small helper classes */
+.card{background:white;border-radius:.5rem;box-shadow:0 6px 18px rgba(16,24,40,0.06);padding:1rem}
+/* Ensure images are responsive and don't overflow */
+img{max-width:100%;height:auto;display:block}
+
+/* Paginator helper */
+.paginator-button { @apply px-3 py-1 rounded-md bg-indigo-600 text-white hover:bg-indigo-700; }
+
+/* Form card used by login/register */
+.form-card{
+	@apply bg-white rounded-xl shadow-lg p-6 mx-auto;
+}
+
+/* Form inputs/buttons */
+.form-input{
+	@apply block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500;
+}
+.form-button{
+	@apply w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700;
+}
+
+/* Table wrapper */
+.table-wrapper{
+	@apply overflow-x-auto bg-white rounded-lg shadow p-4;
+}
+.table th{
+	@apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+.table td{
+	@apply px-6 py-4 whitespace-nowrap text-sm text-gray-700;
+}
+
+/* Nav container alignment */
+.nav-container{
+ 	@apply max-w-6xl mx-auto w-full flex items-center gap-4;
+}
+
+/* Header avatar dropdown adjustments */
+.nav-container .rounded-full { @apply text-sm; }
+
+/* Fallback styles for header, links and avatar (in case Tailwind not loaded)
+	 These ensure Home/Razas/Tabla/Perfil and avatar 'U' are visible and styled. */
+.nav-container a {
+	color: #374151; /* gray-700 */
+	font-weight: 600;
+	padding-right: 1rem;
+	text-decoration: none;
+}
+.nav-container a:hover { color: #6366F1; /* indigo-500 */ }
+.nav-container .avatar-fallback {
+	height: 2rem;
+	width: 2rem;
+	border-radius: 9999px;
+	background: #4F46E5; /* indigo-600 */
+	color: #fff;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+}
+.nav-container .profile-dropdown {
+	position: absolute;
+	right: 0;
+	margin-top: .5rem;
+	width: 12rem;
+	background: #fff;
+	border-radius: .375rem;
+	box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+	z-index: 50;
+}
+.nav-container button { background: transparent; border: none; cursor: pointer }
+
+
+/* Small helpers */
+.muted { @apply text-sm text-gray-500; }
+
+/* SweetAlert2 toast color overrides */
+.swal2-toast.swal2-success {
+	background: #16a34a !important; /* green-600 */
+	color: #ffffff !important;
+}
+.swal2-toast.swal2-error {
+	background: #dc2626 !important; /* red-600 */
+	color: #ffffff !important;
+}
+.swal2-toast.swal2-warning {
+	background: #f59e0b !important; /* amber-500 */
+	color: #000000 !important;
+}
+.swal2-toast.swal2-info {
+	background: #3b82f6 !important; /* blue-500 */
+	color: #ffffff !important;
+}
+
+
+
